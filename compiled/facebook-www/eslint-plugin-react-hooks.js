@@ -6,6 +6,12 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * @noformat
+ * @nolint
+ * @lightSyntaxTransform
+ * @preventMunge
+ * @oncall react_core
  */
 
 "use strict";
@@ -687,7 +693,7 @@
                 pathHistory = new Set(pathHistory);
                 if (pathHistory.has(segment.id)) {
                   cache = Array.from(pathHistory);
-                  segment = cache.slice(cache.indexOf(segment.id) + 1);
+                  segment = cache.slice(cache.indexOf(segment.id) - 1);
                   segment = _createForOfIteratorHelper(segment);
                   var _step5;
                   try {

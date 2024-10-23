@@ -201,64 +201,64 @@ __DEV__ &&
       previousDispatcher = ReactSharedInternals.H;
       ReactSharedInternals.H = null;
       disableLogs();
-      var RunInRootFrame = {
-        DetermineComponentFrameRoot: function () {
-          try {
-            if (construct) {
-              var Fake = function () {
-                throw Error();
-              };
-              Object.defineProperty(Fake.prototype, "props", {
-                set: function () {
+      try {
+        var RunInRootFrame = {
+          DetermineComponentFrameRoot: function () {
+            try {
+              if (construct) {
+                var Fake = function () {
                   throw Error();
+                };
+                Object.defineProperty(Fake.prototype, "props", {
+                  set: function () {
+                    throw Error();
+                  }
+                });
+                if ("object" === typeof Reflect && Reflect.construct) {
+                  try {
+                    Reflect.construct(Fake, []);
+                  } catch (x) {
+                    var control = x;
+                  }
+                  Reflect.construct(fn, [], Fake);
+                } else {
+                  try {
+                    Fake.call();
+                  } catch (x$0) {
+                    control = x$0;
+                  }
+                  fn.call(Fake.prototype);
                 }
-              });
-              if ("object" === typeof Reflect && Reflect.construct) {
-                try {
-                  Reflect.construct(Fake, []);
-                } catch (x) {
-                  var control = x;
-                }
-                Reflect.construct(fn, [], Fake);
               } else {
                 try {
-                  Fake.call();
-                } catch (x$0) {
-                  control = x$0;
+                  throw Error();
+                } catch (x$1) {
+                  control = x$1;
                 }
-                fn.call(Fake.prototype);
+                (Fake = fn()) &&
+                  "function" === typeof Fake.catch &&
+                  Fake.catch(function () {});
               }
-            } else {
-              try {
-                throw Error();
-              } catch (x$1) {
-                control = x$1;
-              }
-              (Fake = fn()) &&
-                "function" === typeof Fake.catch &&
-                Fake.catch(function () {});
+            } catch (sample) {
+              if (sample && control && "string" === typeof sample.stack)
+                return [sample.stack, control.stack];
             }
-          } catch (sample) {
-            if (sample && control && "string" === typeof sample.stack)
-              return [sample.stack, control.stack];
+            return [null, null];
           }
-          return [null, null];
-        }
-      };
-      RunInRootFrame.DetermineComponentFrameRoot.displayName =
-        "DetermineComponentFrameRoot";
-      var namePropDescriptor = Object.getOwnPropertyDescriptor(
-        RunInRootFrame.DetermineComponentFrameRoot,
-        "name"
-      );
-      namePropDescriptor &&
-        namePropDescriptor.configurable &&
-        Object.defineProperty(
+        };
+        RunInRootFrame.DetermineComponentFrameRoot.displayName =
+          "DetermineComponentFrameRoot";
+        var namePropDescriptor = Object.getOwnPropertyDescriptor(
           RunInRootFrame.DetermineComponentFrameRoot,
-          "name",
-          { value: "DetermineComponentFrameRoot" }
+          "name"
         );
-      try {
+        namePropDescriptor &&
+          namePropDescriptor.configurable &&
+          Object.defineProperty(
+            RunInRootFrame.DetermineComponentFrameRoot,
+            "name",
+            { value: "DetermineComponentFrameRoot" }
+          );
         var _RunInRootFrame$Deter =
             RunInRootFrame.DetermineComponentFrameRoot(),
           sampleStack = _RunInRootFrame$Deter[0],
@@ -267,54 +267,58 @@ __DEV__ &&
           var sampleLines = sampleStack.split("\n"),
             controlLines = controlStack.split("\n");
           for (
-            sampleStack = _RunInRootFrame$Deter = 0;
-            _RunInRootFrame$Deter < sampleLines.length &&
-            !sampleLines[_RunInRootFrame$Deter].includes(
+            _RunInRootFrame$Deter = namePropDescriptor = 0;
+            namePropDescriptor < sampleLines.length &&
+            !sampleLines[namePropDescriptor].includes(
+              "DetermineComponentFrameRoot"
+            );
+
+          )
+            namePropDescriptor++;
+          for (
+            ;
+            _RunInRootFrame$Deter < controlLines.length &&
+            !controlLines[_RunInRootFrame$Deter].includes(
               "DetermineComponentFrameRoot"
             );
 
           )
             _RunInRootFrame$Deter++;
-          for (
-            ;
-            sampleStack < controlLines.length &&
-            !controlLines[sampleStack].includes("DetermineComponentFrameRoot");
-
-          )
-            sampleStack++;
           if (
-            _RunInRootFrame$Deter === sampleLines.length ||
-            sampleStack === controlLines.length
+            namePropDescriptor === sampleLines.length ||
+            _RunInRootFrame$Deter === controlLines.length
           )
             for (
-              _RunInRootFrame$Deter = sampleLines.length - 1,
-                sampleStack = controlLines.length - 1;
-              1 <= _RunInRootFrame$Deter &&
-              0 <= sampleStack &&
-              sampleLines[_RunInRootFrame$Deter] !== controlLines[sampleStack];
+              namePropDescriptor = sampleLines.length - 1,
+                _RunInRootFrame$Deter = controlLines.length - 1;
+              1 <= namePropDescriptor &&
+              0 <= _RunInRootFrame$Deter &&
+              sampleLines[namePropDescriptor] !==
+                controlLines[_RunInRootFrame$Deter];
 
             )
-              sampleStack--;
+              _RunInRootFrame$Deter--;
           for (
             ;
-            1 <= _RunInRootFrame$Deter && 0 <= sampleStack;
-            _RunInRootFrame$Deter--, sampleStack--
+            1 <= namePropDescriptor && 0 <= _RunInRootFrame$Deter;
+            namePropDescriptor--, _RunInRootFrame$Deter--
           )
             if (
-              sampleLines[_RunInRootFrame$Deter] !== controlLines[sampleStack]
+              sampleLines[namePropDescriptor] !==
+              controlLines[_RunInRootFrame$Deter]
             ) {
-              if (1 !== _RunInRootFrame$Deter || 1 !== sampleStack) {
+              if (1 !== namePropDescriptor || 1 !== _RunInRootFrame$Deter) {
                 do
                   if (
-                    (_RunInRootFrame$Deter--,
-                    sampleStack--,
-                    0 > sampleStack ||
-                      sampleLines[_RunInRootFrame$Deter] !==
-                        controlLines[sampleStack])
+                    (namePropDescriptor--,
+                    _RunInRootFrame$Deter--,
+                    0 > _RunInRootFrame$Deter ||
+                      sampleLines[namePropDescriptor] !==
+                        controlLines[_RunInRootFrame$Deter])
                   ) {
                     var _frame =
                       "\n" +
-                      sampleLines[_RunInRootFrame$Deter].replace(
+                      sampleLines[namePropDescriptor].replace(
                         " at new ",
                         " at "
                       );
@@ -325,7 +329,7 @@ __DEV__ &&
                       componentFrameCache.set(fn, _frame);
                     return _frame;
                   }
-                while (1 <= _RunInRootFrame$Deter && 0 <= sampleStack);
+                while (1 <= namePropDescriptor && 0 <= _RunInRootFrame$Deter);
               }
               break;
             }
@@ -466,7 +470,8 @@ __DEV__ &&
     }
     function warnIfStringRefCannotBeAutoConverted(config, self) {
       var owner;
-      "string" === typeof config.ref &&
+      !disableStringRefs &&
+        "string" === typeof config.ref &&
         (owner = getOwner()) &&
         self &&
         owner.stateNode !== self &&
@@ -639,18 +644,23 @@ __DEV__ &&
         (checkKeyStringCoercion(maybeKey), (children = "" + maybeKey));
       hasValidKey(config) &&
         (checkKeyStringCoercion(config.key), (children = "" + config.key));
-      hasValidRef(config) && warnIfStringRefCannotBeAutoConverted(config, self);
-      if ("ref" in config || "key" in config) {
+      hasValidRef(config) &&
+        (disableStringRefs ||
+          warnIfStringRefCannotBeAutoConverted(config, self));
+      if (
+        (!enableFastJSXWithoutStringRefs && "ref" in config) ||
+        "key" in config
+      ) {
         maybeKey = {};
         for (var propName in config)
           "key" !== propName &&
-            ("ref" === propName
-              ? (maybeKey.ref = coerceStringRef(
+            (disableStringRefs || "ref" !== propName
+              ? (maybeKey[propName] = config[propName])
+              : (maybeKey.ref = coerceStringRef(
                   config[propName],
                   getOwner(),
                   type
-                ))
-              : (maybeKey[propName] = config[propName]));
+                )));
       } else maybeKey = config;
       if (!disableDefaultPropsExceptForClasses && type && type.defaultProps) {
         config = type.defaultProps;
@@ -756,6 +766,7 @@ __DEV__ &&
       return info;
     }
     function coerceStringRef(mixedRef, owner, type) {
+      if (disableStringRefs) return mixedRef;
       if ("string" !== typeof mixedRef)
         if ("number" === typeof mixedRef || "boolean" === typeof mixedRef)
           willCoercionThrow(mixedRef) &&
@@ -774,43 +785,49 @@ __DEV__ &&
       return callback;
     }
     function stringRefAsCallbackRef(stringRef, type, owner, value) {
-      if (!owner)
-        throw Error(
-          "Element ref was specified as a string (" +
-            stringRef +
-            ") but no owner was set. This could happen for one of the following reasons:\n1. You may be adding a ref to a function component\n2. You may be adding a ref to a component that was not created inside a component's render method\n3. You have multiple copies of React loaded\nSee https://react.dev/link/refs-must-have-owner for more information."
-        );
-      if (1 !== owner.tag)
-        throw Error(
-          "Function components cannot have string refs. We recommend using useRef() instead. Learn more about using refs safely here: https://react.dev/link/strict-mode-string-ref"
-        );
-      if (
-        "function" !== typeof type ||
-        (type.prototype && type.prototype.isReactComponent)
-      )
-        (type = getComponentNameFromFiber(owner) || "Component"),
-          didWarnAboutStringRefs[type] ||
-            (error(
-              'Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. We recommend using useRef() or createRef() instead. Learn more about using refs safely here: https://react.dev/link/strict-mode-string-ref',
-              type,
-              stringRef
-            ),
-            (didWarnAboutStringRefs[type] = !0));
-      owner = owner.stateNode;
-      if (!owner)
-        throw Error(
-          "Missing owner for string ref " +
-            stringRef +
-            ". This error is likely caused by a bug in React. Please file an issue."
-        );
-      owner = owner.refs;
-      null === value ? delete owner[stringRef] : (owner[stringRef] = value);
+      if (!disableStringRefs) {
+        if (!owner)
+          throw Error(
+            "Element ref was specified as a string (" +
+              stringRef +
+              ") but no owner was set. This could happen for one of the following reasons:\n1. You may be adding a ref to a function component\n2. You may be adding a ref to a component that was not created inside a component's render method\n3. You have multiple copies of React loaded\nSee https://react.dev/link/refs-must-have-owner for more information."
+          );
+        if (1 !== owner.tag)
+          throw Error(
+            "Function components cannot have string refs. We recommend using useRef() instead. Learn more about using refs safely here: https://react.dev/link/strict-mode-string-ref"
+          );
+        if (
+          "function" !== typeof type ||
+          (type.prototype && type.prototype.isReactComponent)
+        )
+          (type = getComponentNameFromFiber(owner) || "Component"),
+            didWarnAboutStringRefs[type] ||
+              (enableLogStringRefsProd &&
+                enableLogStringRefsProd(type, stringRef),
+              error(
+                'Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. We recommend using useRef() or createRef() instead. Learn more about using refs safely here: https://react.dev/link/strict-mode-string-ref',
+                type,
+                stringRef
+              ),
+              (didWarnAboutStringRefs[type] = !0));
+        owner = owner.stateNode;
+        if (!owner)
+          throw Error(
+            "Missing owner for string ref " +
+              stringRef +
+              ". This error is likely caused by a bug in React. Please file an issue."
+          );
+        owner = owner.refs;
+        null === value ? delete owner[stringRef] : (owner[stringRef] = value);
+      }
     }
     var React = require("react"),
       dynamicFeatureFlags = require("ReactFeatureFlags"),
       disableDefaultPropsExceptForClasses =
         dynamicFeatureFlags.disableDefaultPropsExceptForClasses,
+      disableStringRefs = dynamicFeatureFlags.disableStringRefs,
       enableDebugTracing = dynamicFeatureFlags.enableDebugTracing,
+      enableLogStringRefsProd = dynamicFeatureFlags.enableLogStringRefsProd,
       enableRenderableContext = dynamicFeatureFlags.enableRenderableContext,
       enableTransitionTracing = dynamicFeatureFlags.enableTransitionTracing,
       renameElementSymbol = dynamicFeatureFlags.renameElementSymbol,
@@ -864,7 +881,8 @@ __DEV__ &&
       specialPropKeyWarningShown;
     var didWarnAboutStringRefs = {};
     var didWarnAboutElementRef = {};
-    var didWarnAboutKeySpread = {},
+    var enableFastJSXWithoutStringRefs = disableStringRefs,
+      didWarnAboutKeySpread = {},
       ownerHasKeyUseWarning = {};
     exports.Fragment = REACT_FRAGMENT_TYPE;
     exports.jsxDEV = function (
